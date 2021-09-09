@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.main_header {
+  width: 100vw;
+  min-height: 30vh;
+  background-color: darkmagenta;
+  color: darkorange;
+  font-weight: 600;
+  text-shadow: 5px 5px 5px darkred;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul.main_nav {
+  list-style: none;
+  display: flex;
+  background-color: lightsalmon;
+  color: whitesmoke;
+}
+ul.main_nav a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5rem;
+  margin-left: 20px;
+  font-weight: bold;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+ul.main_menu a:hover {
+  transition: 0.5s;
+  background-color: darkred;
+  cursor: pointer;
+}

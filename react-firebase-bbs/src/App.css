@@ -1,0 +1,10 @@
+/* 여기서부터 MainBBs CSS */
+div.bbsMain_list {
+  width: 100%;
+}
+table.bbs_list {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}

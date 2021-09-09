@@ -1,0 +1,20 @@
+div.write {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: darkmagenta;
+  display: flex;
+}
+div.input_box {
+  width: 100vw;
+}
+div.input_box input:focus {
+  background-color: cornsilk;
+}
+
+div.input_box input {
+  display: inline-block;
+  margin: 0 auto;
+  border: none;
+  padding: 1rem;
+  width: 30%;
+}
