@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer_box">
       <address> CopyRight &copy; kimbyulook@naver.com</address>
     </footer>
   );

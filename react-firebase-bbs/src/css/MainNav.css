@@ -3,34 +3,31 @@
   margin: 0;
   padding: 0;
 }
-.main_header {
-  width: 100vw;
-  min-height: 30vh;
-  background-color: darkmagenta;
-  color: darkorange;
-  font-weight: 600;
-  text-shadow: 5px 5px 5px darkred;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+div.main_navBox {
+  height: 40px;
+  background-color: darkorange;
 }
 ul.main_nav {
   list-style: none;
   display: flex;
-  background-color: lightsalmon;
-  color: whitesmoke;
+  background-color: rgb(124, 0, 249);
+  text-decoration: none;
+  height: 4px;
+  position: absolute;
+  color: darkmagenta;
+  text-shadow: 0.5px 0.5px 1px darkred;
 }
 ul.main_nav a {
   text-decoration: none;
+  color: inherit;
   display: inline-block;
   padding: 0.5rem;
-  margin-left: 20px;
   font-weight: bold;
   border-top: 3px solid transparent;
   border-bottom: 3px solid transparent;
 }
-ul.main_menu a:hover {
-  transition: 0.5s;
-  background-color: darkred;
+ul.main_nav a:hover {
   cursor: pointer;
+  border-top: 5px solid darkorange;
+  transition: 0.4s;
 }

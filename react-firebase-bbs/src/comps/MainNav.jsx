@@ -1,29 +1,31 @@
 import React from "react";
-import { BrowserRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 function MainNav() {
   return (
-    <ul className="main_nav">
-      <li>
-        <NavLink exact to="/" activeClassName="active_nav">
-          HOME
-        </NavLink>
-      </li>
-      <li>
-        <NavLink exact to="/Write" activeClassName="active_nav">
-          글쓰기
-        </NavLink>
-      </li>
-      <li>
-        <NavLink exact to="/login" activeClassName="active_nav">
-          로그인
-        </NavLink>
-      </li>
-      <li>
-        <NavLink exact to="/join" activeClassName="active_nav">
-          회원가입
-        </NavLink>
-      </li>
-    </ul>
+    <div className="main_navBox">
+      <ul className="main_nav">
+        <li>
+          <NavLink exact to="/" activeClassName="active_nav">
+            HOME
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/Write" activeClassName="active_nav">
+            WRITE
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/login" activeClassName="active_nav">
+            LOGIN
+          </NavLink>
+        </li>
+        <li>
+          <NavLink exact to="/join" activeClassName="active_nav">
+            JOIN
+          </NavLink>
+        </li>
+      </ul>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import Header from "./comps/Header";
 import MainNav from "./comps/MainNav";
 import BBsMain from "./comps/BBsMain";
 import Footer from "./comps/Footer";
-import Write from "./comps/Write";
+import Write from "./comps/BBsWrite";
 
 function App() {
   return (

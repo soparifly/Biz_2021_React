@@ -1,20 +1,38 @@
-div.write {
-  width: 100vw;
-  min-height: 100vh;
-  background-color: darkmagenta;
-  display: flex;
-}
 div.input_box {
-  width: 100vw;
+  width: 100%;
+  text-align: center;
 }
 div.input_box input:focus {
   background-color: cornsilk;
 }
 
 div.input_box input {
+  margin: 3px auto;
+  background-color: rgb(255, 162, 0);
   display: inline-block;
-  margin: 0 auto;
-  border: none;
-  padding: 1rem;
-  width: 30%;
+  border: 1px dotted black;
+  padding: 4px;
+  width: 50%;
+  border-radius: 10px;
+}
+div.input_content input {
+  padding: 3rem;
+}
+.btn_box {
+  display: flex;
+}
+.btn_box button {
+  width: 50%;
+  margin: 20px auto;
+  height: 30px;
+  background-color: rgb(255, 162, 0);
+  color: rgb(124, 0, 249);
+  font-weight: bold;
+  border: 4px double rgb(124, 0, 249);
+}
+.btn_box button:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  border: 6px double rgb(124, 0, 249);
+  box-shadow: 0.5px 0.5px 10px rgb(124, 0, 249);
 }
