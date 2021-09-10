@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Yanone+Kaffeesatz:wght@700&display=swap");
+.main_header {
+  width: 100vw;
+  min-height: 30vh;
+  background-color: darkmagenta;
+  color: darkorange;
+  font-weight: 600;
+  text-shadow: 5px 5px 5px darkred;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+div.App {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 162, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* 여기서부터 MainBBs CSS */
+section.main_section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+div.bbsMain_list {
+  width: 100%;
+  background-color: rgb(255, 162, 0);
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 15px;
+}
+table.bbs_list tr {
+  padding: 20px;
+}
+table.bbs_list th,
+table.bbs_list td {
+  padding-right: 40px;
+  padding-left: 30px;
+}
+table.bbs_list th:nth-of-type(1),
+table.bbs_list td:nth-of-type(1) {
+  padding-right: 5px;
+  padding-left: 15px;
+}
+table.bbs_list th:nth-of-type(2),
+table.bbs_list td:nth-of-type(2) {
+  padding-right: 5px;
+  padding-left: 15px;
+}
+footer.footer_box {
+  width: 100vw;
+  text-align: center;
+}

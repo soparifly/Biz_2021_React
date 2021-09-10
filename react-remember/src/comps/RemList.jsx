@@ -1,24 +1,9 @@
 import React from "react";
-import { useState } from "react";
-//JS 코드에 전반적으로 사용되는 날짜 시간 등을 관리하는 라이브러리
+import { useState, useEffect, useCallback } from "react";
 import moment from "moment";
 import UUID from "react-uuid";
-/**
- * headArray 에 있는 배열 항목을 map 을 통해서 text에 주입하고
- * forEach 를 통해서 <th>"날짜"<th> 로 표현한다
- *
- */
-const headArray = ["날짜", "시간", "기억할일"];
 
-const rem_header = () => {
-  /**
-   * 제목 배열을 map()를 이용하여 forEach하기
-   */
-  return headArray.map((text) => {
-    //제목배열의 요소인 문자열을 포함하는 th tag를 생성하여 return
-    return <th>{text}</th>;
-  });
-};
+const headArray = ["DATE", "TIME", "TODO"];
 
 const rememberSampleData = {
   r_id: "0001",
@@ -29,31 +14,93 @@ const rememberSampleData = {
 };
 
 function RemList() {
-  /**
-   * rememberList를 담을 '배열'을 상태로 선언하기
-   */
+  const rem_header = useCallback(() => {
+    return headArray.map((text) => {
+      return <th key={UUID()}>{text}</th>;
+    });
+  }, []);
   const [rememberList, setRememberList] = useState([]);
   /**
-   * memberList가 가지고있는 배열요소들은 배열이 아닐때 없는요소가된다
-   * 그래서 배열로지정해줌
+   * 로컬스토리지에 리멤버리스트를 파서로 변환하고
+   * setRememberList를 통해 JSON을 가져와서 화면에 보여줌
+   * 화면이 새로나타날때마다 해당 함수를 계속 소환하기 때문에 문법상의
+   * 문제가 없지만
+   * 문제개선이 필요함
+   * 그래서 useCallback을 사용한다
    */
+  /**
+   * useEffect가 실행(호출할)함수를 선언하였다
+   * 이함수는 화면이 rendering 될때 한번만 호출될 함수
+   * 하지만 react에 의해서 현재 화면이 보여지는 상태가 되면
+   * 이 함수를 계속해서 다시생성한다
+   * 현재의 컴퓨터 성능으로는 큰문제가 없지만
+   * 이러한 과정이 계속해서 반복된다면 메모리등에 문제를 일으킬 수 있다
+   *
+   * react16에서는 이러한 함수를 useCallback()으로 감싸도록 권장하고있다
+   * useCallback()으로 감싸진 함수는 이전에 한번이라도 만들어진 경우는 그대로 재사용하고 없는경우에만 함수를 생성한다
+   *
+   */
+  //   const fetchData = () => {
+  const fetchCallback = useCallback(() => {
+    const remString = localStorage.rememberList;
+
+    if (remString) {
+      console.log("Fetch rememberList");
+      const remJSON = JSON.parse(remString);
+      setRememberList(remJSON);
+    }
+  }, []);
+
+  // const fetchCallback = useCallback(fetchData, []);
+  // 현재 상태에 데이터가 없을때는 최초의 1회만 실행함
+  // 최초에 rendering될때 (app이 시작될때, page가 열릴때, 새록고침할때)
+  // fetchData를 실행함,
+  //   useEffect(fetchCallback, [fetchData]);
+  useEffect(fetchCallback, [fetchCallback]);
 
   /**
-   * list중 한 요소를 더블클릭하면
-   * 1.삭제하기
-   * 2.선택된 요소의 UUI값을 추출하여 해당 요소의 r_comp값을 완료된것으로 표시하기
-   * @param {*} e
+   * 객체 배열 sort하기
+   * 배열.sort(compareFuction(p,n))
+   * pre와 next에 번갈하면서 요소가 담긴다,
+   * 두가지를 이용해서
+   * 완료가되면    1을
+   * 미완료일경우 -1을 return 한다
+   *
+   * compareFunction의 return 값에 따라서 배열의 위치가 교환된다
+   * 만약에 return 값이 return 0보다 크냐 작냐에따라 next 앞으로 pre 뒤로
+   * 이동시킨다
+   *
+   * map(), filter()는 결과를 return 하여 다른 배열을 생성한다
+   * sort()는 자기자신을 변경한다
+   *
    */
+  const saveStorage = () => {
+    console.log("EFFECT");
+    if (rememberList.length > 0) {
+      rememberList.sort((pre, next) => {
+        if (pre.r_comp && !next.r_comp) return -1;
+        if (!pre.r_comp && next.r_comp) return 1;
+      });
+      // return pre.r_comp
+      //   ? 1
+      //   : pre.r_date > next.r_date && pre.r_time > next.r_time
+      //   ? -1
+      //   : 0;
+
+      localStorage.rememberList = JSON.stringify(rememberList);
+    }
+  };
+
+  //useEffect(함수, 상태대상)
+  // 화면에 rendering이 발생할때 실행되는 public event 연결
+  // 일부러 호출하거나, 실행하지않아도
+  // 어떤 조건이 발생하면 자동으로 호출되어실행되는함수
+  //상태가 없으면 최초의 rendring될때 한번만 함수를 호출한다
+  useEffect(saveStorage, [rememberList]);
   const trOnClick = (e) => {
     const td = e.target;
     if (td.tagName === "TD") {
       const uuid = td.closest("TR").dataset.uuid;
-      //   alert(uuid);
-      /**리스트에서 선택된 요소의 UUID값이 담긴것만 제외하고(filtering) 새로운 복제 _list를 덮어씌우기 */
-      //   const _list = rememberList.filter((remember) => {
-      // return remember.r_id !== uuid;
-      //   });
-      // filtering된 list를 rememberList로 대체하기
       const _list = rememberList.map((remember) => {
         if (remember.r_id === uuid) {
           return { ...remember, r_comp: !remember.r_comp };
@@ -66,8 +113,8 @@ function RemList() {
   };
   const list_body = rememberList.map((remember) => {
     return (
-      //tr을쓰는이유 rememberList가 tr을 포함하여야하기때문
       <tr
+        key={remember.r_id}
         data-uuid={remember.r_id}
         className={remember.r_comp ? "comp" : ""}
         onDoubleClick={trOnClick}
@@ -78,53 +125,48 @@ function RemList() {
       </tr>
     );
   });
-  /**
-   * input box 입력을 하는 과정에서 Enter를 누르면
-   * 데이터를 어딘가에 추가하기
-   * @param {} e
-   */
   const onKeyDown = (e) => {
-    // 키보드로 입력하고 Enter키를 누르면
     if (e.keyCode === 13) {
-      //   현재까지 입력된 문자열들을 추축한다
-      //   이때 문자열은 input box의 value 속성에 담겨있다
       const { value } = e.target;
-      // alert("입력" + value);
-      // input box에 입력된 문자열을 rememberList에 담기 위해서 객체로 생성
       const remember = {
         r_id: UUID(),
-        // moment()를 사용하여 현재 시스템의 날짜와 시간가져오기
         r_date: moment().format("YYYY[-]MM[-]DD"),
         r_time: moment().format("HH:mm:ss"),
-        //target으로 뽑아낸 remember 의 value값
         r_remember: value,
         r_comp: false,
       };
-      // 생성된 remember 객체 데이터를 rememberList상태에 추가하기
-      // 상태함수 setRememberList()
       setRememberList([...rememberList, remember]);
       e.target.value = "";
-      // 전개연산자를 사용하지않고 concat 사용하기
-      // setRememberList(remember.concat(remember));
     }
   };
+  /*
+	const array = [1, 2, 3, 4, 5]
+	const arCopy = [...array];
+	요소 추가하고 복제하기
+	const arCopyAdd = [...array, 9, 10];
+	*/
+
   return (
-    <table className="rem_list">
-      <th>{rem_header()}</th>
-      <tbody>
-        {list_body}
-        <tr>
-          <td conspan="3">기억할일</td>
-          <td>
-            <input
-              onKeyDown={onKeyDown}
-              name="r_remember"
-              placeholder="기억할일"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div className="tbout">
+      <table className="rem_list">
+        <thead>
+          <tr>{rem_header()}</tr>
+        </thead>
+        <tbody>
+          {list_body}
+          <tr>
+            <td colSpan="2">TO DO</td>
+            <td>
+              <input
+                onKeyDown={onKeyDown}
+                name="r_remember"
+                placeholder="What do you want!?"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }
 

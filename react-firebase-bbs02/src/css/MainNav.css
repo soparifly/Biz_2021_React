@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+div.main_navBox {
+  height: 40px;
+  background-color: darkorange;
+}
+ul.main_nav {
+  list-style: none;
+  display: flex;
+  background-color: rgb(124, 0, 249);
+  text-decoration: none;
+  height: 4px;
+  position: absolute;
+  color: darkmagenta;
+  text-shadow: 0.5px 0.5px 1px darkred;
+}
+ul.main_nav a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  padding: 0.5rem;
+  font-weight: bold;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+ul.main_nav a:hover {
+  cursor: pointer;
+  border-top: 5px solid darkorange;
+  transition: 0.4s;
+}

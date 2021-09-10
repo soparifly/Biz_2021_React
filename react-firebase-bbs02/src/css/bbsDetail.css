@@ -1,0 +1,24 @@
+div.bbs_detail {
+  padding: 40px;
+}
+div.bbs_detail label,
+div.bbs_detail span {
+  display: inline-block;
+  margin: 0%;
+  padding: 0.5rem;
+}
+
+.bbs_btn_box button {
+  height: 30px;
+  background-color: rgb(255, 162, 0);
+  color: rgb(124, 0, 249);
+  font-weight: bold;
+  border: 4px double rgb(124, 0, 249);
+  margin-left: 9px;
+}
+.bbs_btn_box button:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  border: 6px double rgb(124, 0, 249);
+  box-shadow: 0.5px 0.5px 10px rgb(124, 0, 249);
+}
