@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.main_header {
+  background: url("../img/background.png");
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.main_section {
+  height: 60vh;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_header h1 {
+  color: whitesmoke;
+}
+.write_input_div input {
+  width: 500px;
+  display: block;
+  /* display: none; */
+  margin: 10px auto;
+}
+.todo_view {
+  display: flex;
+  justify-content: center;
+}
+.todo_table {
+  text-align: center;
+}
+.todo_table th {
+  border-collapse: collapse;
+  border-bottom: 1px solid navy;
+}
+
+.main_footer {
+  width: 100vw;
+  height: 30%;
+  background: rgb(25, 55, 119);
+  color: whitesmoke;
+}
