@@ -6,7 +6,14 @@ import moment from "moment";
 
 function BuckMain() {
   const [bucketList, setBucketList] = useState([]);
-
+  /**
+   *
+   * bucket_text 값으로 전달되어온 매개변수를
+   * 아래의 기본 json 형식으로 되어있는 기본 데이터에 할당하여
+   * setBucketList에 전달한다
+   *
+   * @param {*} bucket_text
+   */
   const bucket_insert = (bucket_text) => {
     const bucket = {
       b_id: uuid(),
@@ -19,6 +26,18 @@ function BuckMain() {
     };
     setBucketList([...bucketList, bucket]);
   };
+  /**
+   *
+   * 버킷리스트에서 flag 값을 지정해줄 함수
+   * 버킷리스트에서 id 값을 확인하여
+   * td클릭시에 b_flag 값을 1씩 추가한다
+   *
+   * 위에서는 대괄호를 이용한 전개연산자를 사용했으나
+   * 여기서는 전개연산자 복제 필요없이 flag 값만 증가시켜
+   * setBucketList에 값을 전달한다
+   *
+   * @param {} id
+   */
   //리스트에서 Flag항목을 클릭하면 실행할 함수
   const flag_change = (id) => {
     const _bucketList = bucketList.map((bucket) => {
