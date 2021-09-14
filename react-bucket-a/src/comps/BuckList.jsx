@@ -13,7 +13,10 @@ function BuckList(props) {
    *
    */
   const { bucketList } = props.args;
-  const buckBody = bucketList.map((bucket) => {
+	const buckBody = bucketList.map((bucket) => {
+	  /**
+	   * item 컴포넌트를 작성하여 args 와 bucket을 전달해서 Body를 만듬
+	   */
     return (
       <BuckItem
         args={props.args}
