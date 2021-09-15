@@ -102,11 +102,23 @@ router.post("/insert", (req, res) => {
   console.log(body);
   res.send("끝");
 });
-router.put("/update", async (req, res) => {
+router.put("/bucket", async (res, req) => {
+  const body = req.body;
+  await BUCKET.findOneAndUpdate({ b_id: body.b_id }, body);
+
+  res.json({ result: "OK" });
+});
+router.put("/bucket/over", async (req, res) => {
   const body = req.body;
   // DB에서 b_id 값이 body.b_id 와 같은 데이터를 select하기
 
   //   console.log("업데이트하기");
+  /**
+   * findOne()이 return 하는 doc가 성능상 문제로 null 값이 되어 overriwrite()가 비정상 작동되므로 사용하지말자
+   * <3 Tier 작동방식 3layer App>
+   * react -> node -> atlas
+   * atlas -> node -> react
+   */
   const doc = await BUCKET.findOne({ b_id: body.b_id });
   await doc.overwrtie(body);
   /**
