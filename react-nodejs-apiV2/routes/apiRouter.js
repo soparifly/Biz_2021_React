@@ -1,4 +1,4 @@
-const { json } = require("express");
+const BUCKET = require("../models/Bucket");
 const express = require("express");
 const router = express.Router();
 /**
@@ -39,24 +39,7 @@ const router = express.Router();
 		- 정보에서 어떤 ID값이 1인 데이터를 삭제하라고 요청
  */
 
-const retData = [
-  {
-    b_id: "0001",
-    b_title: "반갑습니다",
-    b_start_data: "2021-09-15",
-    b_end_date: "",
-    b_end_check: false,
-    b_cancel: false,
-  },
-  {
-    b_id: "0002",
-    b_title: "반갑습니다요",
-    b_start_data: "2021-09-16",
-    b_end_date: "",
-    b_end_check: false,
-    b_cancel: false,
-  },
-];
+const retData = [];
 router.get("/getlist", (req, res) => {
   res.json("retData");
 });
@@ -88,19 +71,26 @@ router.get("/update/:id/:title", (req, res) => {
  *
  *
  */
-router.post("/bucket", (req, res) => {
+router.post("/bucket", async (req, res) => {
   const body = req.body;
-  console.log("데이터 추가하기");
+  const result = await BUCKET.create(body);
+  console.log("데이터 추가하기", result);
+
   console.log(body);
-  res.send("끝");
+  res.json({ result: "OK" });
+  //   res.send("끝");
 });
-router.get("/bucket", (req, res) => {
+router.get("/bucket", async (req, res) => {
   const body = req.body;
-  console.log("데이터업데이트하기");
+  const result = await BUCKET.save(body);
+  console.log(body);
+  console.log("데이터업데이트하기", result);
+  res.json({ result: "OK" });
 });
-router.get("/get", (req, res) => {
+router.get("/get", async (req, res) => {
+  const buckets = await BUCKET.find({});
   console.log("전체리스트");
-  res.json(retData);
+  res.json(buckets);
 });
 router.get("/get/:id", (req, res) => {
   console.log("개별데이터 요청하기");

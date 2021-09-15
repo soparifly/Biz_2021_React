@@ -3,6 +3,12 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const {
+  USERID,
+  PASSWORD,
+} = require("../react-nodejs-apiV2/config/mongoConfig");
+const cors = require("cors");
+
 /**
  * CROSS ORIGIN RESOURCE SHARE
  * 서로 다른 서버간에 데이터를 주고받을때
@@ -32,11 +38,14 @@ mongoose.connect(mongAtlas);
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
-var app = express();
+const app = express();
+
+
 
 // cors를 허용할 Origin List
 const whiteList = ["http://localhost:5000", "http://localhost:4000"];
 
+//api
 const corsOption = {
   origin: (origin, callback) => {
     const isWhiteList = whiteList.indexOf(origin) !== -1;
