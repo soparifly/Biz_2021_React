@@ -73,6 +73,7 @@ router.get("/update/:id/:title", (req, res) => {
  */
 router.post("/bucket", async (req, res) => {
   const body = req.body;
+
   const result = await BUCKET.create(body);
   console.log("데이터 추가하기", result);
 
@@ -101,7 +102,21 @@ router.post("/insert", (req, res) => {
   console.log(body);
   res.send("끝");
 });
-router.put("/update", (req, res) => {});
+router.put("/update", async (req, res) => {
+  const body = req.body;
+  // DB에서 b_id 값이 body.b_id 와 같은 데이터를 select하기
+
+  //   console.log("업데이트하기");
+  const doc = await BUCKET.findOne({ b_id: body.b_id });
+  await doc.overwrtie(body);
+  /**
+   * select한 model 객체의 모든 요소 데이터를
+   * body로 받은 데이터로 변경하라
+   */
+  //doc ={...doc,b_id:body.b_id,b_title :  body:b_title}
+  await doc.save();
+  await console.table(body);
+});
 router.delete("/cancel/:id", (req, res) => {
   const id = req.params.id;
   console.log("수신된 데이터", id);

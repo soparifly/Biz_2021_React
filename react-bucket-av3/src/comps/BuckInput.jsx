@@ -3,21 +3,22 @@ import React from "react";
 function BuckInput(props) {
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
-      //   alert("Enter");
       const bucket = e.target.value;
-      // 전달받은 bucket_inser()함수에
-      // input 에 입력된 bucket text 를 전달하기
+      // 전달받은 buck_insert() 함수에
+      // input에 입력된 bucket text를 전달하기
 
-      props.bucket_insert(bucket);
+      props.buck_insert(bucket);
+      e.target.value = "";
     }
   };
+
   return (
     <div className="w3-form-control w3-margin">
       <input
         onKeyDown={onKeyDown}
-        className="w3-input w3-border w3-hover-gray"
+        className="w3-input w3-border w3-hover-gray w3-round"
         placeholder="버킷에 추가할 내용을 입력하세요"
-      />
+      ></input>
     </div>
   );
 }

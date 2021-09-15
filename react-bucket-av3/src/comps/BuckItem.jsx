@@ -1,4 +1,3 @@
-import moment from "moment";
 import React, { useState } from "react";
 
 const b_flag_text = ["일반", "중요", "매우중요", "긴급"];
@@ -12,7 +11,7 @@ function BuckItem({ args, bucket }) {
     b_title: "",
     isEdit: false,
   });
-	const [bucket, setBucket] = useState({});
+
   const onItemClick = (e) => {
     // e.currentTarget
     // 직접 이벤트가 설정된 tag
@@ -25,9 +24,6 @@ function BuckItem({ args, bucket }) {
     if (itemTd.tagName === "TD") {
       const className = itemTd.className;
       if (className.includes("b_flag")) {
-		  const putBucket = (id, column, data) => {
-			const sendBucket =
-		};
         flag_change(b_id);
       } else if (className.includes("b_title")) {
         // input box 나타나는 코드
