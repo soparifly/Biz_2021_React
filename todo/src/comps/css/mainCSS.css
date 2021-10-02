@@ -1,0 +1,8 @@
+.headerMain {
+  width: 100vw;
+  height: 20vh;
+  /* border: 1px solid green; */
+  background: black;
+  color: aqua;
+  font-size: 4rem;
+}

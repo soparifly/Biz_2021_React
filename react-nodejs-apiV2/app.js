@@ -20,8 +20,8 @@ dbConn.once("open", () => {
 dbConn.on("error", () => {
   console.error;
 });
+// 아틀라스에 인서트가 갑자기 느려저서 로컬로 바로접속하면 빨라진다
 // mongoose.connect(atlasURL);
-
 mongoose.connect("mongodb://localhost:27017/mydb");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");

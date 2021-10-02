@@ -14,3 +14,7 @@
 - RenderSquares에게 전달하고 실행하여 변경할수 있도록해야한다
 
 ## React에서 state로 선언된 배열은 직접변경불가능하다
+squares[index] = "B" 를 수행할 수 없다
+const 임시배열 = [...squares] // 임시 배열에 복사
+임시배열[index] = "B" // 임시 배열의 값 변경
+setSquares(임시배열) // 임시 배열을 squares로 교체
