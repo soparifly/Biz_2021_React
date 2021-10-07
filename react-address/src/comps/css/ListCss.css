@@ -1,0 +1,47 @@
+.list_table {
+  width: 60%;
+  min-height: 500px;
+  border-collapse: collapse;
+}
+
+.list_table thead tr,
+th {
+  color: blue;
+  font-weight: 400;
+  border-bottom: 1px solid blue;
+  border-right: 1px solid blue;
+  border-left: 1px solid blue;
+  border-collapse: collapse;
+}
+.list_table thead th:nth-child(1) {
+  width: 10%;
+}
+.list_table thead th:nth-child(2) {
+  width: 20%;
+}
+.list_table thead th:nth-child(3) {
+  width: 40%;
+}
+.list_table thead th:nth-child(4) {
+  width: 20%;
+}
+.list_table thead th:nth-child(5) {
+  width: 10%;
+}
+.list_table tbody {
+  height: 400px;
+  overflow: hidden;
+}
+.list_table tbody tr,
+td {
+  overflow-y: auto;
+  border-bottom: 1px solid blue;
+  border-right: 1px solid blue;
+  border-left: 1px solid blue;
+}
+#input_age input {
+  width: 50px;
+}
+#order {
+  width: 20px;
+}

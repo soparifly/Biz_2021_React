@@ -1,0 +1,19 @@
+.input_top {
+  width: 60%;
+  border-collapse: collapse;
+  text-align: center;
+  align-content: center;
+}
+.input_top input {
+  border: none;
+}
+.input_top tbody tr,
+td {
+  height: 20px;
+}
+#title {
+  color: blue;
+  font-size: 30px;
+  text-decoration: underline;
+  letter-spacing: 1.2rem;
+}

@@ -17,6 +17,7 @@ const LoginForm = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
       },
       //   sesstion 을 부여함 nodejs에서는 ture 여기서는 include
       credentials: "include",
